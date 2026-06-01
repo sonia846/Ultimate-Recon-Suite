@@ -14,11 +14,18 @@ RED = '\033[91m'
 RESET = '\033[0m'
 BOLD = '\033[1m'
 
+# FIXED: Yeh function ab external banner.txt file ko read aur print karega
 def print_banner():
-    print(f"{BLUE}{BOLD}" + "="*60)
-    print("   🚀 ADVANCED NETWORK RECONNAISSANCE & UTILITY SUITE 🚀   ")
-    print("                Developed with Zero-Error Policy           ")
-    print("="*60 + f"{RESET}\n")
+    try:
+        with open("banner.txt", "r") as f:
+            banner_content = f.read()
+        print(f"{BLUE}{BOLD}{banner_content}{RESET}\n")
+    except FileNotFoundError:
+        # Backup banner agar file galti se miss ho jaye
+        print(f"{BLUE}{BOLD}" + "="*60)
+        print("   🚀 ADVANCED NETWORK RECONNAISSANCE & UTILITY SUITE 🚀   ")
+        print("                Developed with Zero-Error Policy           ")
+        print("="*60 + f"{RESET}\n")
 
 def get_target():
     target = input(f"{YELLOW}[?] Enter Target Domain or IP Address: {RESET}").strip()
@@ -254,4 +261,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-  
+    
