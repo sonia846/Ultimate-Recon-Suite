@@ -19,7 +19,8 @@ def print_banner():
     try:
         with open("banner.txt", "r") as f:
             banner_content = f.read()
-        print(f"{BLUE}{BOLD}{banner_content}{RESET}\n")
+            import os
+            os.system("cat banner.txt | lolcat")
     except FileNotFoundError:
         # Backup banner agar file galti se miss ho jaye
         print(f"{BLUE}{BOLD}" + "="*60)
